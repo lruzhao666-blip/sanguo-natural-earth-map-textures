@@ -1,0 +1,37 @@
+{
+  "verified_date": "2026-10-15",
+  "passed": true,
+  "faction_colors": 40,
+  "unique_faction_colors": 40,
+  "basis_counts": {
+    "inferred_nominal": 63,
+    "contested_projection": 6,
+    "historical_core": 26,
+    "local_administration": 22,
+    "game_city_allocation": 16,
+    "later_partition": 15
+  },
+  "factions": 40,
+  "cities": 148,
+  "assigned_cities": 126,
+  "local_administration_cities": 22,
+  "documented_coalition_participants": 11,
+  "other_campaign_partners": 5,
+  "map_sha256": "f0d9e512bfbe621467927daf9cbfd107beba218aeaab5c852d44cf519426fd46",
+  "checks": [
+    "unique IDs/names",
+    "complete map coverage",
+    "start city ownership",
+    "source references",
+    "coalition roles",
+    "local authority semantics",
+    "key timeline choices",
+    "exact map checksum",
+    "human review table matches JSON",
+    "40 unique HEX colors and RGB conversion"
+  ],
+  "historical_boundaries_reconstructed": false,
+  "full_history_accuracy_certified": false,
+  "colors_reference": "Wiki table BGCOLOR values; 22 original identities and 18 explicit palette reassignments",
+  "official_game_palette_verified": false
+}
