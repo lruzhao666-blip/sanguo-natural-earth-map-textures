@@ -63,18 +63,20 @@
   "sha256": {
     "ne_10m_land_asia.geojson": "495498a22610b2b59573eb3ce02ac7db310abd628d25abb6aa543bc27e27d48a",
     "SR_HR_asia.png": "5dfa211290455924209610731eee1896ae92da80f4ce9848c42b174e7e2a4c75",
-    "SR_HR_asia.pgw": "99b771f09aff1a88e4b56415e53f88c48b919ee7e348b7ac94dc0cce40c7ae33",
+    "SR_HR_asia.pgw": "422476ac65b62f361bd51ad77a3f7e2af46fc2250286963db7697a9c0b084a0d",
     "SR_HR_asia.prj": "3259f0e55290a82b1350646f604e8a7ee1e2136c0320a40fad838ab40819fff8",
-    "README.md": "3b856f38d14819702a734744e36ef852150e28e60acb2dbe8d22d66aa8d3f744",
-    "verify.py": "b6a7bed85c6e9daad06cd3c9293a9f4996e6511962cf987b14face4f0f1714b0"
+    "README.md": "a24f954768ed23f65dd876e51121c3593977815dd83cec73a43f42f68d6363bf",
+    "verify.py": "135fc008b00a35a75600bbb0ec7529b33ce841c3b2eeea4cbb0bb35d53ef5a9e",
+    ".gitattributes": "2e18d1d732a8e5a3efa54346e9e6a9653cc575c6ca70738539a068211254d076"
   },
   "bytes": {
     "ne_10m_land_asia.geojson": 6747739,
     "SR_HR_asia.png": 17155309,
-    "SR_HR_asia.pgw": 111,
+    "SR_HR_asia.pgw": 105,
     "SR_HR_asia.prj": 147,
-    "README.md": 3542,
-    "verify.py": 3124
+    "README.md": 3497,
+    "verify.py": 3123,
+    ".gitattributes": 90
   },
   "retrieved_date": "2026-10-14",
   "versions": {
