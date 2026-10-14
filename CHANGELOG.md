@@ -1,5 +1,139 @@
 # CHANGELOG
 
+## v5 — 2026-10-15 · 显示名省略郡/国后缀
+
+- 按用户要求，将 121 条 name 末尾的“郡”或“国”去掉，使地图标签更简洁；保留现有著名城名。不将该规则宣称为光荣某一代作品的完整城市名单。
+- 代郡、陈郡、赵国、梁国、鲁郡、吴郡显示为代、陈、赵、梁、鲁、吴；其他非郡/国后缀沿用既有写法。
+- 同步完整 JSON、148 条区域索引、受影响分片、manifest、verification 和 README；保留 88 片原有拆分与 polygon_offset。
+- 148 条 ID 和显示名无重复；42,980 个顶点、capital 及全部非 name 字段与修改前深度一致；88 片重组与完整 JSON 深度一致。
+- 完整 JSON：483,789 → 483,426 字节；SHA-256：`f0d9e512bfbe621467927daf9cbfd107beba218aeaab5c852d44cf519426fd46`。单片最大 7,455 字节，仍小于 8KB。
+
+| id | 原显示名 | 新显示名 |
+|---|---|---|
+| yuyang | 渔阳郡 | 渔阳 |
+| liaoxi | 辽西郡 | 辽西 |
+| youbeiping | 右北平郡 | 右北平 |
+| zhuo | 范阳郡 | 范阳 |
+| dai | 代郡 | 代 |
+| shanggu | 上谷郡 | 上谷 |
+| liaodong | 辽东郡 | 辽东 |
+| daifang | 带方郡 | 带方 |
+| lelang | 乐浪郡 | 乐浪 |
+| xuantu | 玄菟郡 | 玄菟 |
+| changli | 昌黎郡 | 昌黎 |
+| shangdang | 上党郡 | 上党 |
+| yanmen | 雁门郡 | 雁门 |
+| xihe | 西河郡 | 西河 |
+| xinxing | 新兴郡 | 新兴 |
+| leping | 乐平郡 | 乐平 |
+| pingyang | 平阳郡 | 平阳 |
+| changshan | 常山郡 | 常山 |
+| julu | 巨鹿郡 | 巨鹿 |
+| anping | 安平郡 | 安平 |
+| hejian | 河间郡 | 河间 |
+| zhongshan | 中山国 | 中山 |
+| qinghe | 清河郡 | 清河 |
+| zhaoguo | 赵国 | 赵 |
+| guangping | 广平郡 | 广平 |
+| yangping | 阳平郡 | 阳平 |
+| pingyuan | 平原郡 | 平原 |
+| leling | 乐陵国 | 乐陵 |
+| beihai | 北海国 | 北海 |
+| donglai | 东莱郡 | 东莱 |
+| jinan | 济南国 | 济南 |
+| lean | 乐安郡 | 乐安 |
+| chengyang | 城阳郡 | 城阳 |
+| chenliu | 陈留国 | 陈留 |
+| dongping | 东平国 | 东平 |
+| jibei | 济北国 | 济北 |
+| jiyin | 济阴郡 | 济阴 |
+| shanyang | 山阳郡 | 山阳 |
+| rencheng | 任城郡 | 任城 |
+| taishan | 泰山郡 | 泰山 |
+| runan | 汝南郡 | 汝南 |
+| chenjun | 陈郡 | 陈 |
+| liangguo | 梁国 | 梁 |
+| lujun | 鲁郡 | 鲁 |
+| yiyang | 弋阳郡 | 弋阳 |
+| anfeng | 安丰郡 | 安丰 |
+| pengcheng | 彭城国 | 彭城 |
+| xiapi | 下邳郡 | 下邳 |
+| guangling | 广陵郡 | 广陵 |
+| donghai | 东海国 | 东海 |
+| dongguan | 东莞郡 | 东莞 |
+| langya | 琅邪国 | 琅邪 |
+| hedong | 河东郡 | 河东 |
+| henei | 河内郡 | 河内 |
+| hongnong | 弘农郡 | 弘农 |
+| fengyi | 冯翊郡 | 冯翊 |
+| fufeng | 扶风郡 | 扶风 |
+| beidi | 北地郡 | 北地 |
+| anding | 安定郡 | 安定 |
+| xinping | 新平郡 | 新平 |
+| guangwei | 广魏郡 | 广魏 |
+| jincheng | 金城郡 | 金城 |
+| tianshui | 天水郡 | 天水 |
+| wudu | 武都郡 | 武都 |
+| dunhuang | 敦煌郡 | 敦煌 |
+| jiuquan | 酒泉郡 | 酒泉 |
+| zhangye | 张掖郡 | 张掖 |
+| wuwei | 武威郡 | 武威 |
+| xihai | 西海郡 | 西海 |
+| xiping | 西平郡 | 西平 |
+| longxi | 陇西郡 | 陇西 |
+| nanan | 南安郡 | 南安 |
+| xiangyang | 襄阳郡 | 襄阳 |
+| nanxiang | 南乡郡 | 南乡 |
+| xincheng | 新城郡 | 新城 |
+| shangyong | 上庸郡 | 上庸 |
+| weixing | 魏兴郡 | 魏兴 |
+| changsha | 长沙郡 | 长沙 |
+| wuling | 武陵郡 | 武陵 |
+| lingling | 零陵郡 | 零陵 |
+| guiyang | 桂阳郡 | 桂阳 |
+| hengyang | 衡阳郡 | 衡阳 |
+| xiangdong | 湘东郡 | 湘东 |
+| linhe | 临贺郡 | 临贺 |
+| yidu | 宜都郡 | 宜都 |
+| jianping | 建平郡 | 建平 |
+| wujun | 吴郡 | 吴 |
+| kuaiji | 会稽郡 | 会稽 |
+| yuzhang | 豫章郡 | 豫章 |
+| luling | 庐陵郡 | 庐陵 |
+| poyang | 鄱阳郡 | 鄱阳 |
+| xindu | 新都郡 | 新都 |
+| linchuan | 临川郡 | 临川 |
+| jianan | 建安郡 | 建安 |
+| linhai | 临海郡 | 临海 |
+| qichun | 蕲春郡 | 蕲春 |
+| hanzhong | 汉中郡 | 汉中 |
+| jianning | 建宁郡 | 建宁 |
+| zitong | 梓潼郡 | 梓潼 |
+| yinping | 阴平郡 | 阴平 |
+| wenshan | 汶山郡 | 汶山 |
+| dguanghan | 东广汉郡 | 东广汉 |
+| jianwei | 犍为郡 | 犍为 |
+| hanjia | 汉嘉郡 | 汉嘉 |
+| yuexi | 越巂郡 | 越巂 |
+| yunnan | 云南郡 | 云南 |
+| zhuti | 朱提郡 | 朱提 |
+| zangke | 牂牁郡 | 牂牁 |
+| xinggu | 兴古郡 | 兴古 |
+| yongchang | 永昌郡 | 永昌 |
+| fuling | 涪陵郡 | 涪陵 |
+| jiangyang | 江阳郡 | 江阳 |
+| nanhai | 南海郡 | 南海 |
+| jiaozhi | 交趾郡 | 交趾 |
+| cangwu | 苍梧郡 | 苍梧 |
+| hepu | 合浦郡 | 合浦 |
+| yulin | 郁林郡 | 郁林 |
+| gaoliang | 高凉郡 | 高凉 |
+| zhuya | 珠崖郡 | 珠崖 |
+| jiuzhen | 九真郡 | 九真 |
+| rinan | 日南郡 | 日南 |
+
+---
+
 ## v4 — 2026-10-14 · 独立加入亚洲 Natural Earth 素材
 
 - 新增 `natural-earth/`，统一裁剪范围为东经 15°—180°、南纬 15°—北纬 82°；为后续扩展预留空间，不按洲界过滤，包含部分相邻非亚洲陆地，不跨日期变更线。
