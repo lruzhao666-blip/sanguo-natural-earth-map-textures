@@ -20,6 +20,12 @@
 - 本仓库 JSON 保留全部区域记录、字段与边界顶点，并采用紧凑序列化；名称、郡治及势力的整理修订见 CHANGELOG.md，不等于未经修订的上游原文。
 - 显示名采用“著名城名优先，其余地域名省略郡/国后缀”的规则，参考光荣《三国志》的简洁选名感觉；例如北海国显示为北海、汉中郡显示为汉中，既有许昌、小沛等城名保留。代郡、陈郡、赵国、梁国、鲁郡、吴郡分别显示为代、陈、赵、梁、鲁、吴；抚夷护军等其他名称沿用既有写法。capital 仍保留郡治，不因显示名变化而改变 id、州、势力、标注位置与 polygon。
 
+## 剧本归属参考
+
+- [反董卓联盟（190年1月）](scenarios/anti-dong-zhuo-alliance/README.md)：40个可玩势力、148块区域归属，以及40套HEX/RGB势力色。
+- [逐城归属表](scenarios/anti-dong-zhuo-alliance/势力与城池归属.md)和[势力色表](scenarios/anti-dong-zhuo-alliance/势力色表.md)用于审阅；[scenario.json](scenarios/anti-dong-zhuo-alliance/scenario.json)按city_id与地图id关联。
+- 剧本包含历史据点、名义辖属和游戏化安排；来源与取舍单独记录，不改写地图的wei/wu/shu标签或边界。
+
 ## 10KB 受限工具如何读分片
 
 每份分片有 part_index、total_parts、records。records 中：
@@ -41,9 +47,10 @@
 - province-index.txt：148条区域索引，无 polygon。
 - [natural-earth/](natural-earth/README.md)：独立的亚洲陆地轮廓与灰度晕渲素材（15°E—180°E、15°S—82°N），含来源、地理配准信息和自检脚本；尚未与三国画布配准。
 - ai_parts/：88份不超过8KB的无损分片。
+- [scenarios/anti-dong-zhuo-alliance/](scenarios/anti-dong-zhuo-alliance/README.md)：反董卓联盟剧本归属、势力色与校验脚本。
 - manifest.json：上游来源、固定提交、原文与紧凑版摘要、坐标范围。
 - verification.json：全量数据和分片核验结果。
-- CHANGELOG.md：郡级命名修订记录（2026-10-14 至 2026-10-15，含逐条记录）。
+- CHANGELOG.md：地图数据、素材与剧本修订记录（2026-10-14 至 2026-10-15）。
 
 ## 来源和授权状态
 

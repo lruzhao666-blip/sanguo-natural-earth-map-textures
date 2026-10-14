@@ -1,0 +1,2840 @@
+{
+  "id": "anti_dong_zhuo_alliance_190",
+  "name": "反董卓联盟",
+  "version": 1,
+  "status": "reference",
+  "created_date": "2026-10-15",
+  "start": {
+    "year": 190,
+    "month": 1,
+    "precision": "game_reference_month",
+    "note": "190年1月游戏开局；采用190年前后组合设定，部分年内事件压缩，绝非严格逐日历史截面。"
+  },
+  "design_goal": "参考三国志14的主要势力，加上历史地方太守和独立军队，尽量增加可玩势力；将推定与游戏改编公开标记。",
+  "map_reference": {
+    "repository": "lruzhao666-blip/sanguo-strategy-map-data",
+    "commit": "8457bac20e8c2d0306a55ab17a6d4eee5f5c55ff",
+    "file": "gpkg_all_data.json",
+    "sha256": "f0d9e512bfbe621467927daf9cbfd107beba218aeaab5c852d44cf519426fd46",
+    "province_count": 148,
+    "administrative_baseline": "约262年分区；这里只按既有地块ID投影190年前后，未重画190年行政边界。",
+    "join_key": "city_id → provinces[].id",
+    "display_name_policy": "沿用已审核的显示名，包括后世许昌、建业；不用作190年正式地名断言。"
+  },
+  "owner_semantics": {
+    "owner_faction_id": "剧本建议归属，不表示史料证明了整个多边形的实际控制；null表示未具名地方官府。",
+    "null_is_empty": false,
+    "local_administration": "居民、守军和地方官府仍可存在；归属未定，不能当成可无战斗免费占领的空城。",
+    "base_faction": "地图的wei/wu/shu标签不适用于此剧本，加载时用本表覆盖显示归属；不改原JSON。",
+    "core_label": "historical_core仅说明人物/据点背景较有依据；旧地图范围和郡治仍未重建。"
+  },
+  "basis_labels": {
+    "historical_core": "历史据点映射",
+    "inferred_nominal": "名义辖属/推定",
+    "later_partition": "后世分区映射",
+    "game_city_allocation": "游戏化分配",
+    "contested_projection": "流动/争夺投影",
+    "local_administration": "地方官府/待考"
+  },
+  "coalition": {
+    "name": "反董卓联盟",
+    "leader_faction_id": "yuan_shao",
+    "target_faction_id": "dong_zhuo",
+    "documented_participant_ids": [
+      "yuan_shao",
+      "yuan_shu",
+      "cao_cao",
+      "han_fu",
+      "liu_dai",
+      "kong_zhou",
+      "zhang_miao",
+      "qiao_mao",
+      "wang_kuang",
+      "yuan_yi",
+      "bao_xin"
+    ],
+    "campaign_partner_ids": [
+      "sun_jian",
+      "tao_qian",
+      "zhang_yang",
+      "zhang_chao",
+      "liu_chong"
+    ],
+    "note": "区别武帝纪名单与其他起兵/攻董活动；不等同演义固定十八路诸侯。关系是参考，尚未实现自动事件、联盟期限或强制停战。"
+  },
+  "factions": [
+    {
+      "id": "dong_zhuo",
+      "name": "董卓",
+      "leader": "董卓",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "target",
+      "start_city_id": "luoyang",
+      "historical_note": "控制朝廷与京畿军事核心；洛阳、关中是主要舞台。",
+      "design_note": "保留洛阳与长安两处战略支点；皇帝在洛阳，迁都是后续事件。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "id": "yuan_shao",
+      "name": "袁绍",
+      "leader": "袁绍",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "bohai",
+      "historical_note": "起兵时为渤海太守，尚未取得韩馥的冀州。",
+      "design_note": "以南皮为本据；乐陵地块视为渤海范围的后世拆分映射。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "id": "yuan_shu",
+      "name": "袁术",
+      "leader": "袁术",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "nanyang",
+      "historical_note": "联盟时期主要据南阳，尚未占寿春。",
+      "design_note": "宛城开局；不预置后来淮南版图。南阳张咨被杀的过程压缩进开局。",
+      "review_flags": [
+        "intra_190_compression"
+      ],
+      "source_ids": [
+        "H01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "id": "cao_cao",
+      "name": "曹操",
+      "leader": "曹操",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "qiaojun",
+      "historical_note": "189年末在陈留己吾募兵，与张邈地盘和部队相交。",
+      "design_note": "陈留交张邈；为独立操作给曹操家乡谯城一块。不是190年据谯的确定史实。",
+      "review_flags": [
+        "relocated_start",
+        "game_independence"
+      ],
+      "source_ids": [
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "id": "liu_bei",
+      "name": "刘备",
+      "leader": "刘备",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "pingyuan",
+      "historical_note": "先主传的平原相经历与投公孙瓒相连，不能证明190年1月独立据平原。",
+      "design_note": "沿用游戏熟悉的平原独立开局；可作为公孙瓒友好伙伴，但不算史载正式联军名单。",
+      "review_flags": [
+        "game_independence",
+        "timeline_uncertain"
+      ],
+      "source_ids": [
+        "H32",
+        "G01"
+      ]
+    },
+    {
+      "id": "sun_jian",
+      "name": "孙坚",
+      "leader": "孙坚",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "campaign_partner",
+      "start_city_id": "changsha",
+      "historical_note": "长沙太守起兵北上，随后受袁术表任并靠其军粮。",
+      "design_note": "长沙保留后方；单列玩家势力，袁术为军事合作伙伴。只保留长沙系区域，不自动占整个荆南。",
+      "review_flags": [
+        "game_independence"
+      ],
+      "source_ids": [
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "id": "liu_biao",
+      "name": "刘表",
+      "leader": "刘表",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "xiangyang",
+      "historical_note": "在孙坚杀王叡后出任荆州刺史；不能和190年1月初完全同步。",
+      "design_note": "为熟悉的荆州开局，将190年内任命前移；其外围采用名义辖属映射。",
+      "review_flags": [
+        "intra_190_compression"
+      ],
+      "source_ids": [
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "id": "liu_yan",
+      "name": "刘焉",
+      "leader": "刘焉",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "guanghan",
+      "historical_note": "已入益州，早期治绵竹；州内并非处处稳固。",
+      "design_note": "雒城地块代表绵竹一带中枢；成都作为重要城市。外围是州级名义辖属参考。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "id": "liu_yu",
+      "name": "刘虞",
+      "leader": "刘虞",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "yanguo",
+      "historical_note": "幽州牧；与公孙瓒共处同一州，行政权和军事权交叠。",
+      "design_note": "蓟城、渔阳及幽州西部名义辖区归刘虞；不将公孙瓒吞并其全部州权。",
+      "review_flags": [
+        "overlapping_authority"
+      ],
+      "source_ids": [
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "id": "gongsun_zan",
+      "name": "公孙瓒",
+      "leader": "公孙瓒",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "youbeiping",
+      "historical_note": "留屯右北平，军事自主性强，但不等于全幽州州牧。",
+      "design_note": "以右北平一块作独立支点；涿郡不因其早年任县令就直接归他。",
+      "review_flags": [
+        "game_independence"
+      ],
+      "source_ids": [
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "id": "gongsun_du",
+      "name": "公孙度",
+      "leader": "公孙度",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "liaodong",
+      "historical_note": "辽东太守，190年前后经营辽东。",
+      "design_note": "辽东为核心；玄菟、昌黎是扩大与后世地块映射，不把乐浪带方预先全给他。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "id": "han_fu",
+      "name": "韩馥",
+      "leader": "韩馥",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "yecheng",
+      "historical_note": "冀州牧，邺为中心；袁绍仅据渤海。",
+      "design_note": "河北大势力；剥出袁绍与黑山军据点，其余冀州区域部分按名义辖属归入。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "id": "tao_qian",
+      "name": "陶谦",
+      "leader": "陶谦",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "campaign_partner",
+      "start_city_id": "xiapi",
+      "historical_note": "徐州刺史，有地方军政根基；州内仍有独立太守。",
+      "design_note": "下邳为游戏中枢；广陵交张超，其余徐州多按州权映射。",
+      "review_flags": [],
+      "source_ids": [
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "id": "kong_rong",
+      "name": "孔融",
+      "leader": "孔融",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "beihai",
+      "historical_note": "北海相，与黄巾等地方武装对抗。",
+      "design_note": "北海为核心；东莱、城阳仅作邻近扩展推定，不保证实际控制。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "B70",
+        "G01"
+      ]
+    },
+    {
+      "id": "liu_dai",
+      "name": "刘岱",
+      "leader": "刘岱",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "dongping",
+      "historical_note": "兖州刺史，参加起兵；其后才杀桥瑁。",
+      "design_note": "以东平为州权支点，陈留、东郡、山阳、济北、泰山另列地方势力。",
+      "review_flags": [
+        "relocated_start"
+      ],
+      "source_ids": [
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "id": "kong_zhou",
+      "name": "孔伷",
+      "leader": "孔伷",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "documented_participant",
+      "start_city_id": "yingchuan",
+      "historical_note": "豫州刺史，联盟时屯颍川。",
+      "design_note": "许昌地块作颍川据点；其他豫州地块多是名义州权，不以领兵屯驻等同占领整州。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "id": "zhang_yang",
+      "name": "张杨",
+      "leader": "张杨",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "campaign_partner",
+      "start_city_id": "shangdang",
+      "historical_note": "起兵于上党附近，攻壶关不下；参与关东军事活动。",
+      "design_note": "给上党和晋阳作为可操作根据地；上党只是活动据点折算，不声称已夺壶关郡治。",
+      "review_flags": [
+        "game_city_allocation"
+      ],
+      "source_ids": [
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "id": "shi_xie",
+      "name": "士燮",
+      "leader": "士燮",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "jiaozhi",
+      "historical_note": "交趾太守；兄弟后来的多郡任职不是190年一月固定版图证据。",
+      "design_note": "仅交趾起家；交州其余地块保留地方官府，留下南方发展空间。",
+      "review_flags": [],
+      "source_ids": [
+        "H49",
+        "G01"
+      ]
+    },
+    {
+      "id": "zhang_chao",
+      "name": "张超",
+      "leader": "张超",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "campaign_partner",
+      "start_city_id": "guangling",
+      "historical_note": "广陵太守，张邈之弟；臧洪为其属吏。",
+      "design_note": "广陵独立，张邈为友好伙伴；不合并进陶谦。",
+      "review_flags": [],
+      "source_ids": [
+        "H07",
+        "G01"
+      ]
+    },
+    {
+      "id": "zhang_miao",
+      "name": "张邈",
+      "leader": "张邈",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "documented_participant",
+      "start_city_id": "chenliu",
+      "historical_note": "陈留太守，190年起兵诸侯之一。",
+      "design_note": "陈留归本人，曹操另设起家地；保留曹、张的起兵合作。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "H07"
+      ]
+    },
+    {
+      "id": "qiao_mao",
+      "name": "桥瑁",
+      "leader": "桥瑁",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "documented_participant",
+      "start_city_id": "dongjun",
+      "historical_note": "东郡太守，发布求救移书；190年内才被刘岱杀。",
+      "design_note": "濮阳开局，开局尚健在；死亡与刘岱吞并东郡只能作后续事件。",
+      "review_flags": [],
+      "source_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": "wang_kuang",
+      "name": "王匡",
+      "leader": "王匡",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "documented_participant",
+      "start_city_id": "henei",
+      "historical_note": "河内太守，参加起兵。",
+      "design_note": "河内独立；袁绍北线驻军不覆盖王匡行政地盘。",
+      "review_flags": [],
+      "source_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": "yuan_yi",
+      "name": "袁遗",
+      "leader": "袁遗",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "documented_participant",
+      "start_city_id": "shanyang",
+      "historical_note": "山阳太守，参加起兵。",
+      "design_note": "山阳独立；不因同姓袁或原游戏为刘岱属下就并入袁绍或刘岱。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "id": "bao_xin",
+      "name": "鲍信",
+      "leader": "鲍信",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "documented_participant",
+      "start_city_id": "jibei",
+      "historical_note": "武帝纪记济北相参加起兵；官职与编年细节存在考订空间。",
+      "design_note": "济北独立；其192年战死尚未发生。",
+      "review_flags": [
+        "appointment_timeline_review"
+      ],
+      "source_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": "liu_chong",
+      "name": "刘宠",
+      "leader": "刘宠",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "campaign_partner",
+      "start_city_id": "chenjun",
+      "historical_note": "陈王，和国相骆俊保境，并在义兵起时领军。",
+      "design_note": "陈一城，适合宗室强弩小势力；不占孔伷的颍川。",
+      "review_flags": [],
+      "source_ids": [
+        "B50"
+      ]
+    },
+    {
+      "id": "lu_kang",
+      "name": "陆康",
+      "leader": "陆康",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "lujiang_wu",
+      "historical_note": "灵帝末至献帝时的庐江太守。",
+      "design_note": "皖城为游戏支点；六安与皖城同属一套庐江势力，不照搬后世魏吴分界。",
+      "review_flags": [
+        "relocated_start"
+      ],
+      "source_ids": [
+        "B31"
+      ]
+    },
+    {
+      "id": "chen_wen",
+      "name": "陈温",
+      "leader": "陈温",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "huainan",
+      "historical_note": "190年扬州刺史，曾援助曹操募兵。",
+      "design_note": "寿春作为扬州支点；豫章系外围只按名义州权映射，不能证明全部直接经营。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "id": "zhou_xin",
+      "name": "周昕",
+      "leader": "周昕",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "jianye",
+      "historical_note": "190年丹杨太守，曾援曹募兵。",
+      "design_note": "建业地块代表丹杨，不把212年城名当成190年已有名称；新都映射丹杨后世分区。",
+      "review_flags": [],
+      "source_ids": [
+        "H01",
+        "H46"
+      ]
+    },
+    {
+      "id": "ma_teng",
+      "name": "马腾",
+      "leader": "马腾",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "wuwei",
+      "historical_note": "凉州军事首领，与韩遂关系反复；不是191年前后关中布局的原样复制。",
+      "design_note": "参考原游戏武威开局，另配安定一块；安定归属为地盘分配推定。",
+      "review_flags": [
+        "game_city_allocation"
+      ],
+      "source_ids": [
+        "H36",
+        "G01"
+      ]
+    },
+    {
+      "id": "han_sui",
+      "name": "韩遂",
+      "leader": "韩遂",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "jincheng",
+      "historical_note": "在凉州已有军政活动和金城根基。",
+      "design_note": "从马腾势力中拆为独立玩家，金城起家；西平为近邻投影，非确定郡境证据。",
+      "review_flags": [
+        "inferred_outer_control"
+      ],
+      "source_ids": [
+        "H36"
+      ]
+    },
+    {
+      "id": "zhang_yan",
+      "name": "张燕",
+      "leader": "张燕",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "changshan",
+      "historical_note": "黑山军首领，活动涉及常山、太行山区。",
+      "design_note": "常山与乐平折为固定根据地；山地部众不等同正式占据两郡全部城市。",
+      "review_flags": [
+        "mobile_force_projection"
+      ],
+      "source_ids": [
+        "H08"
+      ]
+    },
+    {
+      "id": "guo_tai",
+      "name": "郭太",
+      "leader": "郭太",
+      "playable": true,
+      "origin": "special_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "pingyang",
+      "historical_note": "白波军早于190年起兵，活动于西河、太原、河东。",
+      "design_note": "平阳、西河折为白波固定据点；河东仍归董卓侧并标记有争夺。",
+      "review_flags": [
+        "mobile_force_projection"
+      ],
+      "source_ids": [
+        "B72",
+        "H01"
+      ]
+    },
+    {
+      "id": "song_jian",
+      "name": "宋建",
+      "leader": "宋建",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "longxi",
+      "historical_note": "夏侯渊传记其在枹罕长期割据；精确起始年不能只靠“三十余年”断定。",
+      "design_note": "用陇西地块承载枹罕地方政权；其范围大于实际据点，不能当作整郡确控。",
+      "review_flags": [
+        "approximate_anchor",
+        "timeline_uncertain"
+      ],
+      "source_ids": [
+        "H09"
+      ]
+    },
+    {
+      "id": "zhang_lu",
+      "name": "张鲁",
+      "leader": "张鲁",
+      "playable": true,
+      "origin": "koei14_reference",
+      "coalition_role": "not_listed",
+      "start_city_id": "hanzhong",
+      "historical_note": "与刘焉派遣的汉中行动相关；独立政权形成是过程。",
+      "design_note": "沿用原游戏汉中独立势力，明确为提前独立；东部汉中地块保留刘焉名义辖属。",
+      "review_flags": [
+        "early_independence"
+      ],
+      "source_ids": [
+        "H08",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "id": "sheng_xian",
+      "name": "盛宪",
+      "leader": "盛宪",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "wujun",
+      "historical_note": "曾任吴郡太守，史料此段未明确190年1月就任情况。",
+      "design_note": "吴、毗陵合为地方官府势力，避免预置许贡或孙氏后来的统治；任期待审。",
+      "review_flags": [
+        "appointment_timeline_review"
+      ],
+      "source_ids": [
+        "H51"
+      ]
+    },
+    {
+      "id": "qiu_liju",
+      "name": "丘力居",
+      "leader": "丘力居",
+      "playable": true,
+      "origin": "special_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "liaoxi",
+      "historical_note": "辽西乌桓首领，部落与汉郡行政辖区重叠。",
+      "design_note": "辽西地块作部落开局，不等于占领阳乐郡城；未把其他乌桓部全部合为确控王国。",
+      "review_flags": [
+        "mobile_force_projection"
+      ],
+      "source_ids": [
+        "H30",
+        "H08"
+      ]
+    },
+    {
+      "id": "yu_fuluo",
+      "name": "于夫罗",
+      "leader": "于夫罗",
+      "playable": true,
+      "origin": "special_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "yanmen",
+      "historical_note": "南匈奴部众与白波军等合流，在汉地活动；并非固定占领并州两郡。",
+      "design_note": "雁门、新兴是供可玩部众落点的明显游戏化安排；新兴是后世地块。",
+      "review_flags": [
+        "mobile_force_projection",
+        "relocated_start"
+      ],
+      "source_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": "qingzhou_yellow_turbans",
+      "name": "青州黄巾",
+      "leader": null,
+      "playable": true,
+      "origin": "special_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "lean",
+      "historical_note": "青州黄巾余部持续活动；没有证明190年一月这三块归同一具名首领。",
+      "design_note": "乐安、济南、临淄合成可玩集团；首领待定，不将张角复活或默认管亥统辖全青州。",
+      "review_flags": [
+        "collective_faction",
+        "game_city_allocation"
+      ],
+      "source_ids": [
+        "H01"
+      ]
+    },
+    {
+      "id": "ying_shao",
+      "name": "应劭",
+      "leader": "应劭",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "taishan",
+      "historical_note": "泰山太守，有地方治理与防卫背景。",
+      "design_note": "泰山一城地方官势力；不直接并给刘岱或陶谦。",
+      "review_flags": [],
+      "source_ids": [
+        "B48",
+        "H01"
+      ]
+    },
+    {
+      "id": "cao_yin",
+      "name": "曹寅",
+      "leader": "曹寅",
+      "playable": true,
+      "origin": "historical_expansion",
+      "coalition_role": "not_listed",
+      "start_city_id": "wuling",
+      "historical_note": "孙坚传注记为武陵太守，与荆州刺史王叡有隙。",
+      "design_note": "武陵独立，体现荆州地方太守；不使用后来刘备时期的金旋。",
+      "review_flags": [],
+      "source_ids": [
+        "H46"
+      ]
+    }
+  ],
+  "city_ownership": [
+    {
+      "city_id": "yuyang",
+      "name": "渔阳",
+      "map_state": "幽州",
+      "owner_faction_id": "liu_yu",
+      "basis": "inferred_nominal",
+      "note": "幽州西部按刘虞州权映射，公孙瓒与部落的军事影响仍可能交叠。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "liaoxi",
+      "name": "辽西",
+      "map_state": "幽州",
+      "owner_faction_id": "qiu_liju",
+      "basis": "contested_projection",
+      "note": "以辽西地块代表丘力居部落，不证明阳乐等郡城已经由乌桓政权控制。",
+      "source_ids": [
+        "M01",
+        "H30",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "youbeiping",
+      "name": "右北平",
+      "map_state": "幽州",
+      "owner_faction_id": "gongsun_zan",
+      "basis": "historical_core",
+      "note": "右北平屯兵地折算为根据地，未证明全郡完全脱离刘虞州权。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zhuo",
+      "name": "范阳",
+      "map_state": "幽州",
+      "owner_faction_id": "liu_yu",
+      "basis": "inferred_nominal",
+      "note": "幽州西部按刘虞州权映射，公孙瓒与部落的军事影响仍可能交叠。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "dai",
+      "name": "代",
+      "map_state": "幽州",
+      "owner_faction_id": "liu_yu",
+      "basis": "inferred_nominal",
+      "note": "幽州西部按刘虞州权映射，公孙瓒与部落的军事影响仍可能交叠。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "shanggu",
+      "name": "上谷",
+      "map_state": "幽州",
+      "owner_faction_id": "liu_yu",
+      "basis": "inferred_nominal",
+      "note": "幽州西部按刘虞州权映射，公孙瓒与部落的军事影响仍可能交叠。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yanguo",
+      "name": "蓟城",
+      "map_state": "幽州",
+      "owner_faction_id": "liu_yu",
+      "basis": "historical_core",
+      "note": "蓟为幽州行政中枢；公孙瓒军权并不自动夺走州治。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "liaodong",
+      "name": "辽东",
+      "map_state": "幽州",
+      "owner_faction_id": "gongsun_du",
+      "basis": "historical_core",
+      "note": "辽东太守本据，地图郡治襄平。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "daifang",
+      "name": "带方",
+      "map_state": "幽州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "190年带方尚不是后来独立郡；该地块按乐浪地方官府处理，不提前划给公孙度或公孙康。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "lelang",
+      "name": "乐浪",
+      "map_state": "幽州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "乐浪地方官府，未核定190年首长；不由邻近辽东势力自动吞并。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "xuantu",
+      "name": "玄菟",
+      "map_state": "幽州",
+      "owner_faction_id": "gongsun_du",
+      "basis": "inferred_nominal",
+      "note": "辽东周边与后世昌黎分区作扩展映射；不宣称190年两块已全部兼并。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "changli",
+      "name": "昌黎",
+      "map_state": "幽州",
+      "owner_faction_id": "gongsun_du",
+      "basis": "inferred_nominal",
+      "note": "辽东周边与后世昌黎分区作扩展映射；不宣称190年两块已全部兼并。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "taiyuan",
+      "name": "晋阳",
+      "map_state": "并州",
+      "owner_faction_id": "zhang_yang",
+      "basis": "game_city_allocation",
+      "note": "史载上党攻壶关不下；上党、晋阳折为可玩据点，不能当作两郡郡治确占。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "shangdang",
+      "name": "上党",
+      "map_state": "并州",
+      "owner_faction_id": "zhang_yang",
+      "basis": "game_city_allocation",
+      "note": "史载上党攻壶关不下；上党、晋阳折为可玩据点，不能当作两郡郡治确占。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yanmen",
+      "name": "雁门",
+      "map_state": "并州",
+      "owner_faction_id": "yu_fuluo",
+      "basis": "game_city_allocation",
+      "note": "南匈奴部众可玩落点；并非于夫罗190年稳占雁门，新兴郡亦是后世分区。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "xihe",
+      "name": "西河",
+      "map_state": "并州",
+      "owner_faction_id": "guo_tai",
+      "basis": "contested_projection",
+      "note": "白波军流动据点投影；平阳为后世河东分区，不把寇掠记载写成稳固郡城统治。",
+      "source_ids": [
+        "M01",
+        "B72",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "xinxing",
+      "name": "新兴",
+      "map_state": "并州",
+      "owner_faction_id": "yu_fuluo",
+      "basis": "game_city_allocation",
+      "note": "南匈奴部众可玩落点；并非于夫罗190年稳占雁门，新兴郡亦是后世分区。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "leping",
+      "name": "乐平",
+      "map_state": "并州",
+      "owner_faction_id": "zhang_yan",
+      "basis": "contested_projection",
+      "note": "太行黑山军活动区域折为固定据点；乐平为后世地块，不能据此认定当时占有两郡城。",
+      "source_ids": [
+        "M01",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "pingyang",
+      "name": "平阳",
+      "map_state": "司州",
+      "owner_faction_id": "guo_tai",
+      "basis": "contested_projection",
+      "note": "白波军流动据点投影；平阳为后世河东分区，不把寇掠记载写成稳固郡城统治。",
+      "source_ids": [
+        "M01",
+        "B72",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "yecheng",
+      "name": "邺城",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "historical_core",
+      "note": "韩馥在邺；开局冀州尚未归袁绍。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "changshan",
+      "name": "常山",
+      "map_state": "冀州",
+      "owner_faction_id": "zhang_yan",
+      "basis": "contested_projection",
+      "note": "太行黑山军活动区域折为固定据点；乐平为后世地块，不能据此认定当时占有两郡城。",
+      "source_ids": [
+        "M01",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "julu",
+      "name": "巨鹿",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "bohai",
+      "name": "南皮",
+      "map_state": "冀州",
+      "owner_faction_id": "yuan_shao",
+      "basis": "historical_core",
+      "note": "渤海太守的核心区域，显示名南皮。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "anping",
+      "name": "安平",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "hejian",
+      "name": "河间",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zhongshan",
+      "name": "中山",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "qinghe",
+      "name": "清河",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zhaoguo",
+      "name": "赵",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "guangping",
+      "name": "广平",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yangping",
+      "name": "阳平",
+      "map_state": "冀州",
+      "owner_faction_id": "han_fu",
+      "basis": "inferred_nominal",
+      "note": "按冀州州权归韩馥；地方国相与军队并非全归其直属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "pingyuan",
+      "name": "平原",
+      "map_state": "冀州",
+      "owner_faction_id": "liu_bei",
+      "basis": "game_city_allocation",
+      "note": "参考游戏平原开局，不能据此认定190年1月已独立据平原。",
+      "source_ids": [
+        "M01",
+        "H32",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "leling",
+      "name": "乐陵",
+      "map_state": "冀州",
+      "owner_faction_id": "yuan_shao",
+      "basis": "later_partition",
+      "note": "将后世乐陵地块作渤海相关区域的近似映射；不是190年乐陵国的独立判定。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "beihai",
+      "name": "北海",
+      "map_state": "青州",
+      "owner_faction_id": "kong_rong",
+      "basis": "historical_core",
+      "note": "北海相的核心区域，保留与黄巾争夺的空间。",
+      "source_ids": [
+        "M01",
+        "B70",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "donglai",
+      "name": "东莱",
+      "map_state": "青州",
+      "owner_faction_id": "kong_rong",
+      "basis": "inferred_nominal",
+      "note": "为北海地方势力配置相邻区域；没有证据证明孔融190年统辖东莱、城阳全境。",
+      "source_ids": [
+        "M01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jinan",
+      "name": "济南",
+      "map_state": "青州",
+      "owner_faction_id": "qingzhou_yellow_turbans",
+      "basis": "game_city_allocation",
+      "note": "青州黄巾活动被合成可玩集团，统一指挥与这三块确占都是设计，不填张角或管亥为已证领袖。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "lean",
+      "name": "乐安",
+      "map_state": "青州",
+      "owner_faction_id": "qingzhou_yellow_turbans",
+      "basis": "game_city_allocation",
+      "note": "青州黄巾活动被合成可玩集团，统一指挥与这三块确占都是设计，不填张角或管亥为已证领袖。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "chengyang",
+      "name": "城阳",
+      "map_state": "青州",
+      "owner_faction_id": "kong_rong",
+      "basis": "inferred_nominal",
+      "note": "为北海地方势力配置相邻区域；没有证据证明孔融190年统辖东莱、城阳全境。",
+      "source_ids": [
+        "M01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "qiguo",
+      "name": "临淄",
+      "map_state": "青州",
+      "owner_faction_id": "qingzhou_yellow_turbans",
+      "basis": "game_city_allocation",
+      "note": "青州黄巾活动被合成可玩集团，统一指挥与这三块确占都是设计，不填张角或管亥为已证领袖。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "chenliu",
+      "name": "陈留",
+      "map_state": "兖州",
+      "owner_faction_id": "zhang_miao",
+      "basis": "historical_core",
+      "note": "陈留太守张邈；曹操募兵发生在该区域，但不是夺走张邈的行政归属。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H07"
+      ]
+    },
+    {
+      "city_id": "dongjun",
+      "name": "濮阳",
+      "map_state": "兖州",
+      "owner_faction_id": "qiao_mao",
+      "basis": "historical_core",
+      "note": "东郡太守桥瑁，尚未被刘岱杀；不能提前写为曹操地盘。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "dongping",
+      "name": "东平",
+      "map_state": "兖州",
+      "owner_faction_id": "liu_dai",
+      "basis": "inferred_nominal",
+      "note": "扣除其他独立太守之后的兖州名义辖属；东平为折算州权据点。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jibei",
+      "name": "济北",
+      "map_state": "兖州",
+      "owner_faction_id": "bao_xin",
+      "basis": "historical_core",
+      "note": "按武帝纪起兵名单的济北相身份配置；精确任命时点列为待审。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "jiyin",
+      "name": "济阴",
+      "map_state": "兖州",
+      "owner_faction_id": "liu_dai",
+      "basis": "inferred_nominal",
+      "note": "扣除其他独立太守之后的兖州名义辖属；东平为折算州权据点。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "shanyang",
+      "name": "山阳",
+      "map_state": "兖州",
+      "owner_faction_id": "yuan_yi",
+      "basis": "historical_core",
+      "note": "山阳太守袁遗。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "rencheng",
+      "name": "任城",
+      "map_state": "兖州",
+      "owner_faction_id": "liu_dai",
+      "basis": "inferred_nominal",
+      "note": "扣除其他独立太守之后的兖州名义辖属；东平为折算州权据点。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "taishan",
+      "name": "泰山",
+      "map_state": "兖州",
+      "owner_faction_id": "ying_shao",
+      "basis": "historical_core",
+      "note": "泰山地方太守据点，不直接并入兖州刺史直属。",
+      "source_ids": [
+        "M01",
+        "B48",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "yingchuan",
+      "name": "许昌",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "historical_core",
+      "note": "孔伷屯颍川，以许昌地块表达；许县称许昌是后世地图显示名。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "runan",
+      "name": "汝南",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "chenjun",
+      "name": "陈",
+      "map_state": "豫州",
+      "owner_faction_id": "liu_chong",
+      "basis": "historical_core",
+      "note": "陈王与国相骆俊共同保境；地方宗室势力独立。",
+      "source_ids": [
+        "M01",
+        "B50"
+      ]
+    },
+    {
+      "city_id": "qiaojun",
+      "name": "谯城",
+      "map_state": "豫州",
+      "owner_faction_id": "cao_cao",
+      "basis": "game_city_allocation",
+      "note": "原起兵据点陈留与张邈重叠，为独立操作挪到家乡谯城，未经史料证明190年控制此整块。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "peiguo",
+      "name": "小沛",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "liangguo",
+      "name": "梁",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "lujun",
+      "name": "鲁",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yiyang",
+      "name": "弋阳",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "anfeng",
+      "name": "安丰",
+      "map_state": "豫州",
+      "owner_faction_id": "kong_zhou",
+      "basis": "inferred_nominal",
+      "note": "豫州名义辖属与后世分区参考；不代表孔伷直接占领这六块的全部城邑。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "pengcheng",
+      "name": "彭城",
+      "map_state": "徐州",
+      "owner_faction_id": "tao_qian",
+      "basis": "inferred_nominal",
+      "note": "徐州名义辖属参考；东莞等分区存在时代差异。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xiapi",
+      "name": "下邳",
+      "map_state": "徐州",
+      "owner_faction_id": "tao_qian",
+      "basis": "inferred_nominal",
+      "note": "徐州刺史核心活动区投影，不保证和190年郡治、驻军逐一相符。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "guangling",
+      "name": "广陵",
+      "map_state": "徐州",
+      "owner_faction_id": "zhang_chao",
+      "basis": "historical_core",
+      "note": "广陵太守张超；实际190年郡治不强行沿用地图的262年郡治。",
+      "source_ids": [
+        "M01",
+        "H07",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "donghai",
+      "name": "东海",
+      "map_state": "徐州",
+      "owner_faction_id": "tao_qian",
+      "basis": "inferred_nominal",
+      "note": "徐州刺史核心活动区投影，不保证和190年郡治、驻军逐一相符。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "dongguan",
+      "name": "东莞",
+      "map_state": "徐州",
+      "owner_faction_id": "tao_qian",
+      "basis": "inferred_nominal",
+      "note": "徐州名义辖属参考；东莞等分区存在时代差异。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "langya",
+      "name": "琅邪",
+      "map_state": "徐州",
+      "owner_faction_id": "tao_qian",
+      "basis": "inferred_nominal",
+      "note": "徐州名义辖属参考；东莞等分区存在时代差异。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "B73",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "luoyang",
+      "name": "洛阳",
+      "map_state": "司州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "historical_core",
+      "note": "京畿与关中核心按董卓朝廷控制映射；不代表每个郡县都有同等驻军。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "hedong",
+      "name": "河东",
+      "map_state": "司州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "contested_projection",
+      "note": "河东官府和董卓军军事影响折算；白波军活动使这里存在争夺，不能读成稳固全境控制。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "B72"
+      ]
+    },
+    {
+      "city_id": "henei",
+      "name": "河内",
+      "map_state": "司州",
+      "owner_faction_id": "wang_kuang",
+      "basis": "historical_core",
+      "note": "河内太守王匡；联盟军临时屯驻与郡的行政归属分开。",
+      "source_ids": [
+        "M01",
+        "H01"
+      ]
+    },
+    {
+      "city_id": "hongnong",
+      "name": "弘农",
+      "map_state": "司州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "historical_core",
+      "note": "京畿与关中核心按董卓朝廷控制映射；不代表每个郡县都有同等驻军。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "changan",
+      "name": "长安",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "historical_core",
+      "note": "京畿与关中核心按董卓朝廷控制映射；不代表每个郡县都有同等驻军。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "fengyi",
+      "name": "冯翊",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "historical_core",
+      "note": "京畿与关中核心按董卓朝廷控制映射；不代表每个郡县都有同等驻军。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "fufeng",
+      "name": "扶风",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "historical_core",
+      "note": "京畿与关中核心按董卓朝廷控制映射；不代表每个郡县都有同等驻军。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "beidi",
+      "name": "北地",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "inferred_nominal",
+      "note": "按关中、陇右官府与董卓西部军事影响分配，部分地块是后世分区，190年全境控制待考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "anding",
+      "name": "安定",
+      "map_state": "雍州",
+      "owner_faction_id": "ma_teng",
+      "basis": "game_city_allocation",
+      "note": "武威参考原游戏；安定为与韩遂分开的游戏地盘，缺少190年确控边界证据。",
+      "source_ids": [
+        "M01",
+        "H36",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xinping",
+      "name": "新平",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "inferred_nominal",
+      "note": "按关中、陇右官府与董卓西部军事影响分配，部分地块是后世分区，190年全境控制待考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "guangwei",
+      "name": "广魏",
+      "map_state": "雍州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "inferred_nominal",
+      "note": "按关中、陇右官府与董卓西部军事影响分配，部分地块是后世分区，190年全境控制待考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "fuyi",
+      "name": "抚夷护军",
+      "map_state": "雍州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "抚夷护军是后世地图建制，190年对应官府与驻防资料不足，暂不设具名统治者。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "jincheng",
+      "name": "金城",
+      "map_state": "凉州",
+      "owner_faction_id": "han_sui",
+      "basis": "historical_core",
+      "note": "金城是韩遂的历史根基方向；不代表整块郡境无其他部众。",
+      "source_ids": [
+        "M01",
+        "H36"
+      ]
+    },
+    {
+      "city_id": "tianshui",
+      "name": "天水",
+      "map_state": "凉州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "inferred_nominal",
+      "note": "按关中、陇右官府与董卓西部军事影响分配，部分地块是后世分区，190年全境控制待考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "wudu",
+      "name": "武都",
+      "map_state": "凉州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "武都官府与氐羌部众的交错区域，未核定190年稳定统治者。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "dunhuang",
+      "name": "敦煌",
+      "map_state": "凉州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "河西地方官府，不能把张猛、张进等后期事件人物提前置入190年。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "jiuquan",
+      "name": "酒泉",
+      "map_state": "凉州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "河西地方官府，190年郡守与马腾控制程度尚未核实。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "zhangye",
+      "name": "张掖",
+      "map_state": "凉州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "河西地方官府，190年独立首长与确控范围尚未核实。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "wuwei",
+      "name": "武威",
+      "map_state": "凉州",
+      "owner_faction_id": "ma_teng",
+      "basis": "game_city_allocation",
+      "note": "武威参考原游戏；安定为与韩遂分开的游戏地盘，缺少190年确控边界证据。",
+      "source_ids": [
+        "M01",
+        "H36",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xihai",
+      "name": "西海",
+      "map_state": "凉州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "后世西海地块不视为190年已同名设郡；羌部与汉边郡影响交叠，资料不足。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "xiping",
+      "name": "西平",
+      "map_state": "凉州",
+      "owner_faction_id": "han_sui",
+      "basis": "inferred_nominal",
+      "note": "金城附近后世西平地块作相邻投影，控制归属待考。",
+      "source_ids": [
+        "M01",
+        "H36"
+      ]
+    },
+    {
+      "city_id": "longxi",
+      "name": "陇西",
+      "map_state": "凉州",
+      "owner_faction_id": "song_jian",
+      "basis": "game_city_allocation",
+      "note": "枹罕地方政权近似映射陇西地块；只有该据点背景，没有整块区域确控证据。",
+      "source_ids": [
+        "M01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "nanan",
+      "name": "南安",
+      "map_state": "凉州",
+      "owner_faction_id": "dong_zhuo",
+      "basis": "inferred_nominal",
+      "note": "按关中、陇右官府与董卓西部军事影响分配，部分地块是后世分区，190年全境控制待考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H06",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "nanyang",
+      "name": "宛城",
+      "map_state": "荆州",
+      "owner_faction_id": "yuan_shu",
+      "basis": "game_city_allocation",
+      "note": "联盟期南阳据点；将孙坚杀张咨和袁术据南阳的190年内过程压缩到开局。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xiangyang",
+      "name": "襄阳",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "game_city_allocation",
+      "note": "将190年内荆州接任压缩到开局；襄阳、江陵作荆州核心，非严格一月截面。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "nanxiang",
+      "name": "南乡",
+      "map_state": "荆州",
+      "owner_faction_id": "yuan_shu",
+      "basis": "later_partition",
+      "note": "南乡为南阳相关后世地块，本剧本并入南阳据点参考。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xincheng",
+      "name": "新城",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_yan",
+      "basis": "later_partition",
+      "note": "190年的汉中东部方向不能仅凭地图的后世荆州标签归刘表；暂归刘焉名义辖属，边界与控制待考。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "shangyong",
+      "name": "上庸",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_yan",
+      "basis": "later_partition",
+      "note": "190年的汉中东部方向不能仅凭地图的后世荆州标签归刘表；暂归刘焉名义辖属，边界与控制待考。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "weixing",
+      "name": "魏兴",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_yan",
+      "basis": "later_partition",
+      "note": "190年的汉中东部方向不能仅凭地图的后世荆州标签归刘表；暂归刘焉名义辖属，边界与控制待考。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "H08"
+      ]
+    },
+    {
+      "city_id": "jiangling",
+      "name": "江陵",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "game_city_allocation",
+      "note": "将190年内荆州接任压缩到开局；襄阳、江陵作荆州核心，非严格一月截面。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "changsha",
+      "name": "长沙",
+      "map_state": "荆州",
+      "owner_faction_id": "sun_jian",
+      "basis": "historical_core",
+      "note": "以长沙太守原有根据地支持独立军队开局，北征中的后方控制不等同本人驻此。",
+      "source_ids": [
+        "M01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "wuling",
+      "name": "武陵",
+      "map_state": "荆州",
+      "owner_faction_id": "cao_yin",
+      "basis": "historical_core",
+      "note": "武陵太守曹寅；不提前使用建安后期的荆南四太守组合。",
+      "source_ids": [
+        "M01",
+        "H46"
+      ]
+    },
+    {
+      "city_id": "lingling",
+      "name": "零陵",
+      "map_state": "荆州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "保留荆南地方官府，不把后来刘度前移到190年。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "guiyang",
+      "name": "桂阳",
+      "map_state": "荆州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "保留荆南地方官府，不把后来赵范前移到190年。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "hengyang",
+      "name": "衡阳",
+      "map_state": "荆州",
+      "owner_faction_id": "sun_jian",
+      "basis": "later_partition",
+      "note": "长沙相关后世分区近似归入孙坚后方，不是190年独立郡归属。",
+      "source_ids": [
+        "M01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xiangdong",
+      "name": "湘东",
+      "map_state": "荆州",
+      "owner_faction_id": "sun_jian",
+      "basis": "later_partition",
+      "note": "长沙相关后世分区近似归入孙坚后方，不是190年独立郡归属。",
+      "source_ids": [
+        "M01",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "linhe",
+      "name": "临贺",
+      "map_state": "荆州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "后世临贺地块保留地方官府，190年首长和范围待考。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "yidu",
+      "name": "宜都",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "later_partition",
+      "note": "南郡西部的后世地块近似映射；实际边界未经190年地理重建。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jianping",
+      "name": "建平",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "later_partition",
+      "note": "南郡西部的后世地块近似映射；实际边界未经190年地理重建。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jianye",
+      "name": "建业",
+      "map_state": "扬州",
+      "owner_faction_id": "zhou_xin",
+      "basis": "later_partition",
+      "note": "丹杨方向归周昕，新都为后世分区；建业显示名对应秣陵方向，不能提前认为孙权已经建都。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H46"
+      ]
+    },
+    {
+      "city_id": "wujun",
+      "name": "吴",
+      "map_state": "扬州",
+      "owner_faction_id": "sheng_xian",
+      "basis": "inferred_nominal",
+      "note": "吴郡地方官府以盛宪代表，精确就任时间待考；毗陵是后世独立地块。",
+      "source_ids": [
+        "M01",
+        "H51"
+      ]
+    },
+    {
+      "city_id": "kuaiji",
+      "name": "会稽",
+      "map_state": "扬州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "保留会稽地方官府；不提前设王朗（其任职属后续阶段）或虞翻为独立君主。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "yuzhang",
+      "name": "豫章",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "luling",
+      "name": "庐陵",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "poyang",
+      "name": "鄱阳",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "xindu",
+      "name": "新都",
+      "map_state": "扬州",
+      "owner_faction_id": "zhou_xin",
+      "basis": "later_partition",
+      "note": "丹杨方向归周昕，新都为后世分区；建业显示名对应秣陵方向，不能提前认为孙权已经建都。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H46"
+      ]
+    },
+    {
+      "city_id": "linchuan",
+      "name": "临川",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "jianan",
+      "name": "建安",
+      "map_state": "扬州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "会稽南部后世建安地块，由地方官府占位，不视为190年同名独立郡。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "linhai",
+      "name": "临海",
+      "map_state": "扬州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "会稽东部后世临海地块，由地方官府占位，不视为190年同名独立郡。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "qichun",
+      "name": "蕲春",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "huainan",
+      "name": "寿春",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "寿春地块代表九江及扬州州权；袁术此时尚未占寿春。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "piling",
+      "name": "毗陵",
+      "map_state": "扬州",
+      "owner_faction_id": "sheng_xian",
+      "basis": "inferred_nominal",
+      "note": "吴郡地方官府以盛宪代表，精确就任时间待考；毗陵是后世独立地块。",
+      "source_ids": [
+        "M01",
+        "H51"
+      ]
+    },
+    {
+      "city_id": "jiangbei",
+      "name": "江淮",
+      "map_state": "扬州",
+      "owner_faction_id": "chen_wen",
+      "basis": "inferred_nominal",
+      "note": "扬州及豫章系后世分区的名义州权/邻接映射；江淮地块是宽泛区域，非精确190年郡境。",
+      "source_ids": [
+        "M01",
+        "H01",
+        "H09"
+      ]
+    },
+    {
+      "city_id": "chengdu",
+      "name": "成都",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "historical_core",
+      "note": "益州盆地核心；绵竹用雒城地块表达，成都不是声称当时州治已经迁到成都。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "hanzhong",
+      "name": "汉中",
+      "map_state": "益州",
+      "owner_faction_id": "zhang_lu",
+      "basis": "game_city_allocation",
+      "note": "沿原游戏保留提前独立的汉中张鲁；严格190年一月版应归汉中官府/刘焉名义体系。",
+      "source_ids": [
+        "M01",
+        "H08",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "ba",
+      "name": "江州",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "badong",
+      "name": "永安",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "baxi",
+      "name": "阆中",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jianning",
+      "name": "建宁",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zitong",
+      "name": "梓潼",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yinping",
+      "name": "阴平",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "wenshan",
+      "name": "汶山",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "guanghan",
+      "name": "雒城",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "historical_core",
+      "note": "益州盆地核心；绵竹用雒城地块表达，成都不是声称当时州治已经迁到成都。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "dguanghan",
+      "name": "东广汉",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jianwei",
+      "name": "犍为",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "hanjia",
+      "name": "汉嘉",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yuexi",
+      "name": "越巂",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yunnan",
+      "name": "云南",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zhuti",
+      "name": "朱提",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "zangke",
+      "name": "牂牁",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "xinggu",
+      "name": "兴古",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "yongchang",
+      "name": "永昌",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "南中按益州名义辖属折算，郡名和范围有后世成分；不证明刘焉能够直接动员全境。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "fuling",
+      "name": "涪陵",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jiangyang",
+      "name": "江阳",
+      "map_state": "益州",
+      "owner_faction_id": "liu_yan",
+      "basis": "inferred_nominal",
+      "note": "益州州权与后世盆地分区映射；具体太守控制程度不明，地方反抗尚未全体拆出。",
+      "source_ids": [
+        "M01",
+        "H31",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "nanhai",
+      "name": "南海",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "南海地方官府，士燮兄弟后来的任职不作为190年一月确据。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "jiaozhi",
+      "name": "交趾",
+      "map_state": "交州",
+      "owner_faction_id": "shi_xie",
+      "basis": "historical_core",
+      "note": "只以交趾作士燮起家地；其后家族版图不提前全量覆盖交州。",
+      "source_ids": [
+        "M01",
+        "H49",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "cangwu",
+      "name": "苍梧",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "苍梧地方官府；史璜可作后续扩展候选，本稿未落实其一月任期及地块确控。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "hepu",
+      "name": "合浦",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "合浦地方官府，士壹后来的任职不直接前移。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "yulin",
+      "name": "郁林",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "郁林地方官府，士武后来的任职不直接前移。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "gaoliang",
+      "name": "高凉",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "南海周边后世高凉地块，保留地方官府，精确首长待考。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "zhuya",
+      "name": "珠崖",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "此地图珠崖地块按既有郡治徐闻方向理解，190年地方官府待考；不冒称士燮已统治海南。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "jiuzhen",
+      "name": "九真",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "九真地方官府，未核实190年由士燮本人控制。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "rinan",
+      "name": "日南",
+      "map_state": "交州",
+      "owner_faction_id": null,
+      "basis": "local_administration",
+      "note": "日南地方官府，未核实190年由士燮本人控制。",
+      "source_ids": [
+        "M01"
+      ]
+    },
+    {
+      "city_id": "lujiang_wei",
+      "name": "六安",
+      "map_state": "扬州",
+      "owner_faction_id": "lu_kang",
+      "basis": "later_partition",
+      "note": "魏吴分开的两块庐江统一映射陆康；以皖城作可操作支点，不宣称190年郡治恰为皖城。",
+      "source_ids": [
+        "M01",
+        "B31"
+      ]
+    },
+    {
+      "city_id": "lujiang_wu",
+      "name": "皖城",
+      "map_state": "扬州",
+      "owner_faction_id": "lu_kang",
+      "basis": "later_partition",
+      "note": "魏吴分开的两块庐江统一映射陆康；以皖城作可操作支点，不宣称190年郡治恰为皖城。",
+      "source_ids": [
+        "M01",
+        "B31"
+      ]
+    },
+    {
+      "city_id": "jiangxia_wei",
+      "name": "安陆",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "later_partition",
+      "note": "两块魏吴江夏在190年剧本合属一个江夏方向；归刘表是州权映射，不预设黄祖独立军阀。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    },
+    {
+      "city_id": "jiangxia_wu",
+      "name": "武昌",
+      "map_state": "荆州",
+      "owner_faction_id": "liu_biao",
+      "basis": "later_partition",
+      "note": "两块魏吴江夏在190年剧本合属一个江夏方向；归刘表是州权映射，不预设黄祖独立军阀。",
+      "source_ids": [
+        "M01",
+        "H06",
+        "H31",
+        "H46",
+        "G01"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "M01",
+      "title": "本仓库已审核的地图数据",
+      "url": "https://github.com/lruzhao666-blip/sanguo-strategy-map-data/blob/8457bac20e8c2d0306a55ab17a6d4eee5f5c55ff/gpkg_all_data.json",
+      "type": "map_baseline",
+      "use": "冻结地图ID、显示名与约262年分区；不能证明190年权属。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H36",
+      "title": "《三国志》卷36·关张马黄赵传（马超传及典略注）",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B736",
+      "type": "primary_history",
+      "use": "马腾、韩遂的西州起事与后续关系，具体190年郡境仍未核定。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B70",
+      "title": "《后汉书》卷70·孔融传",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B770",
+      "type": "primary_history",
+      "use": "董卓时期出任北海相、地方黄巾争夺与随后活动。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "G01",
+      "title": "《三国志14》190年1月「反董卓连合」玩家资料表",
+      "url": "https://wikiwiki.jp/sangokushi14/190%E5%B9%B41%E6%9C%88%E3%80%80%E5%8F%8D%E8%91%A3%E5%8D%93%E9%80%A3%E5%90%88",
+      "type": "community_game_reference",
+      "use": "核对剧本年月与21个可选势力；玩家整理，非官方完整城池数据导出。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "G02",
+      "title": "光荣《三国志14 with 威力加强版》剧本介绍",
+      "url": "https://www.gamecity.com.tw/sangokushi14/wpk/scenario.html",
+      "type": "official_game",
+      "use": "官方191年10月剧本介绍可用于区分联盟形成和其后袁绍夺冀州；不提供190年全部归属表。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H01",
+      "title": "《三国志》卷01·武帝纪",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B701",
+      "type": "primary_history",
+      "use": "190年起兵人物、屯驻；陈温与周昕援曹；曹操领东郡、兖州在其后。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H06",
+      "title": "《三国志》卷06·董卓袁绍袁术刘表传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B706",
+      "type": "primary_history",
+      "use": "董卓、二袁与荆州的基本格局。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H07",
+      "title": "《三国志》卷07·吕布臧洪传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B707",
+      "type": "primary_history",
+      "use": "张邈、张超与酸枣起兵背景。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H08",
+      "title": "《三国志》卷08·二公孙陶四张传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B708",
+      "type": "primary_history",
+      "use": "刘虞、公孙瓒、公孙度、陶谦、张杨、张燕、张鲁；不能由人物活动推成完整郡境控制。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H09",
+      "title": "《三国志》卷09·诸夏侯曹传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B709",
+      "type": "primary_history",
+      "use": "夏侯渊讨宋建及其长期割据；陈温与曹洪募兵关系。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H30",
+      "title": "《三国志》卷30·乌丸鲜卑东夷传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B730",
+      "type": "primary_history",
+      "use": "丘力居等乌桓部落，以及乐浪、带方的前后关系。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H31",
+      "title": "《三国志》卷31·刘二牧传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B731",
+      "type": "primary_history",
+      "use": "刘焉入蜀、治绵竹；张鲁受刘焉派遣与地方反抗。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H32",
+      "title": "《三国志》卷32·先主传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B732",
+      "type": "primary_history",
+      "use": "刘备早年官职与投公孙瓒后的平原经历；190年独立平原开局是游戏安排。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H46",
+      "title": "《三国志》卷46·孙破虏讨逆传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B746",
+      "type": "primary_history",
+      "use": "孙坚长沙起兵、王叡与曹寅、南阳张咨、袁术与孙坚关系。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H49",
+      "title": "《三国志》卷49·刘繇太史慈士燮传",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B749",
+      "type": "primary_history",
+      "use": "士燮交趾根基；不把其家族后来的四郡格局全部倒推到190年。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "H51",
+      "title": "《三国志》卷51·宗室传（孙韶传注）",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%9C%8B%E5%BF%97/%E5%8D%B751",
+      "type": "primary_history",
+      "use": "盛宪曾为吴郡太守，但本段未给出190年1月的精确任期。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B31",
+      "title": "《后汉书》卷31·陆康传",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B731",
+      "type": "primary_history",
+      "use": "陆康庐江任职；魏吴两块庐江地块在本剧本都映射陆康。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B48",
+      "title": "《后汉书》卷48·应奉传附应劭",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B748",
+      "type": "primary_history",
+      "use": "应劭泰山任职背景。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B50",
+      "title": "《后汉书》卷50·孝明八王列传（陈王刘宠）",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B750",
+      "type": "primary_history",
+      "use": "刘宠与骆俊保陈、起兵及救济；适合作独立地方势力。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B72",
+      "title": "《后汉书》卷72·董卓传",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B772",
+      "type": "primary_history",
+      "use": "白波军活动与董卓部将镇压；活动范围不等同固定郡城控制。",
+      "accessed_date": "2026-10-15"
+    },
+    {
+      "id": "B73",
+      "title": "《后汉书》卷73·刘虞公孙瓒陶谦列传",
+      "url": "https://zh.wikisource.org/zh-hant/%E5%BE%8C%E6%BC%A2%E6%9B%B8/%E5%8D%B773",
+      "type": "primary_history",
+      "use": "北方州牧与地方军队关系补充。",
+      "accessed_date": "2026-10-15"
+    }
+  ]
+}
