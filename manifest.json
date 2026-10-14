@@ -1,0 +1,27 @@
+{
+  "commit": "121ad89a3bd1ab7c925ac875f63c3b7f77462abf",
+  "branch": "master",
+  "repository": "https://github.com/liang7833/sanguo-map",
+  "raw_url": "https://raw.githubusercontent.com/liang7833/sanguo-map/121ad89a3bd1ab7c925ac875f63c3b7f77462abf/gpkg_all_data.json",
+  "commit_date": "2026-06-22T14:43:15Z",
+  "retrieved_date": "2026-10-14",
+  "source_bytes": 2388305,
+  "source_sha256": "c8acb3e327f8e09fe21aa2e6d17f6d2c2f03a16bc936b7fdd491727d3b860037",
+  "compact_bytes": 483883,
+  "compact_sha256": "00760364fe93f38cd0cf1c28c5f8c8d703727f479240714d8a8bab88775a1497",
+  "province_count": 148,
+  "total_vertices": 42980,
+  "total_parts": 88,
+  "part_max_bytes": 8192,
+  "part_filename_pattern": "ai_parts/part_001.json ... ai_parts/part_NNN.json",
+  "bounds_wgs84": {
+    "min_x": 93.70078227974147,
+    "max_x": 129.11170474442486,
+    "min_y": 16.625785315954424,
+    "max_y": 42.916921146263945
+  },
+  "canvas_size": {
+    "w": 2000,
+    "h": 1600
+  }
+}

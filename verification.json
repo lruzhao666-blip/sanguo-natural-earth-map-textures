@@ -1,0 +1,40 @@
+{
+  "verified_date": "2026-10-14",
+  "all_json_parsed": true,
+  "province_count": 148,
+  "unique_id_count": 148,
+  "unique_name_count": 148,
+  "all_num_vertices_match": true,
+  "all_polygons_closed": true,
+  "all_polygon_vertices_in_canvas": true,
+  "all_polygon_coordinates_on_2px_grid": true,
+  "all_consecutive_edges_axis_aligned_2px": true,
+  "total_vertices": 42980,
+  "consecutive_edge_count": 42832,
+  "state_counts": {
+    "幽州": 12,
+    "并州": 6,
+    "司州": 5,
+    "冀州": 13,
+    "青州": 6,
+    "兖州": 8,
+    "豫州": 9,
+    "徐州": 6,
+    "雍州": 8,
+    "凉州": 11,
+    "荆州": 18,
+    "扬州": 16,
+    "益州": 21,
+    "交州": 9
+  },
+  "faction_counts": {
+    "wei": 92,
+    "wu": 35,
+    "shu": 21
+  },
+  "part_count": 88,
+  "actual_max_part_bytes": 7467,
+  "lossless_parts_reconstruction_deep_equal": true,
+  "compact_deep_equal": true,
+  "source_sha256": "c8acb3e327f8e09fe21aa2e6d17f6d2c2f03a16bc936b7fdd491727d3b860037"
+}
