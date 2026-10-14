@@ -39,6 +39,7 @@
 
 - gpkg_all_data.json：完整紧凑数据。
 - province-index.txt：148条区域索引，无 polygon。
+- [natural-earth/](natural-earth/README.md)：独立的亚洲陆地轮廓与灰度晕渲素材（15°E—180°E、15°S—82°N），含来源、地理配准信息和自检脚本；尚未与三国画布配准。
 - ai_parts/：88份不超过8KB的无损分片。
 - manifest.json：上游来源、固定提交、原文与紧凑版摘要、坐标范围。
 - verification.json：全量数据和分片核验结果。
@@ -52,4 +53,6 @@
 
 上游原文为2,388,305字节；本仓库的gpkg_all_data.json对应 manifest.json 的 compact_sha256，不是 source_sha256。原文SHA-256：c8acb3e327f8e09fe21aa2e6d17f6d2c2f03a16bc936b7fdd491727d3b860037。
 
-未发现上游声明的 LICENSE。本整理保留来源，**不为上游地图数据新增开源或商用授权**。后续公开再分发或商业使用前应向权利人确认权限。
+Natural Earth 素材的 public domain 说明仅适用于 `natural-earth/` 中的 Natural Earth 数据，详见该目录的来源记录。
+
+未发现三国地图上游声明的 LICENSE。本整理保留来源，**不为上游地图数据新增开源或商用授权**。后续公开再分发或商业使用前应向权利人确认权限。
