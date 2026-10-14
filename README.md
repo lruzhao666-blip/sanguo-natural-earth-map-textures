@@ -26,21 +26,6 @@
 - [逐城归属表](scenarios/anti-dong-zhuo-alliance/势力与城池归属.md)和[势力色表](scenarios/anti-dong-zhuo-alliance/势力色表.md)用于审阅；[scenario.json](scenarios/anti-dong-zhuo-alliance/scenario.json)按city_id与地图id关联。
 - 剧本包含历史据点、名义辖属和游戏化安排；来源与取舍单独记录，不改写地图的wei/wu/shu标签或边界。
 
-## 10KB 受限工具如何读分片
-
-每份分片有 part_index、total_parts、records。records 中：
-- province_index：原 provinces 数组的零起始索引。
-- polygon_offset：本段在原 polygon 的零起始顶点偏移。
-- province：保留原字段，polygon 为本段；num_vertices 仍是完整顶点数。
-
-按 province_index 分组、polygon_offset 升序拼接 polygon。一条区域可能跨多个文件，分片不是独立区域，单段不一定闭合。完整读取并重组后再绘图。全 88 片已重组并与原文件深度比较一致。
-
-分片解决请求截断，不解决总上下文限制；能执行代码的 AI 应直接下载并解析完整 JSON。
-
-## 可以直接交给 AI 的需求
-
-> 基于完整 gpkg_all_data.json 制作独立的三国策略游戏地图原型。无需搜索上游仓库。完整绘制 provinces 中的148条区域，保留原始 id 和全部 polygon；按 faction 着色，显示区域名称，支持缩放、拖动、悬停高亮及点击查看名称、州、郡治、势力。先完成可运行的地图系统，不添加复杂战争、经济和外交。类似《文明时代2》的视觉与交互参考由我另行提供截图，不复制原游戏素材。缺失的地形、精确城市坐标和历史剧本不能编造为史实。候选邻接关系需根据共享边界计算后核验。
-
 ## 目录
 
 - gpkg_all_data.json：完整紧凑数据。
@@ -51,14 +36,6 @@
 - manifest.json：上游来源、固定提交、原文与紧凑版摘要、坐标范围。
 - verification.json：全量数据和分片核验结果。
 - CHANGELOG.md：地图数据、素材与剧本修订记录（2026-10-14 至 2026-10-15）。
-
-## 来源和授权状态
-
-来源：https://github.com/liang7833/sanguo-map
-原路径：仓库根目录 gpkg_all_data.json
-上游固定提交：121ad89a3bd1ab7c925ac875f63c3b7f77462abf（2026-06-22）。整理日期：2026-10-14。
-
-上游原文为2,388,305字节；本仓库的gpkg_all_data.json对应 manifest.json 的 compact_sha256，不是 source_sha256。原文SHA-256：c8acb3e327f8e09fe21aa2e6d17f6d2c2f03a16bc936b7fdd491727d3b860037。
 
 Natural Earth 素材的 public domain 说明仅适用于 `natural-earth/` 中的 Natural Earth 数据，详见该目录的来源记录。
 
