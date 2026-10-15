@@ -184,7 +184,7 @@
 
 **同步与核验**：
 - 同步完整 JSON、148 条区域索引及所有受影响分片；保持原 88 片的序号、记录拆分与 polygon_offset。另修正索引表中淮南条目的遗留势力标记 wu → wei，与完整 JSON 及分片的既有 wei 一致；未改变数据中的势力归属。
-- 完整 JSON：483,813 → 483,789 字节；SHA-256：`8adafacd18e2e27630097c5087ac3c4bd63653afc6625ae63b39522e7fadc0f6`。上游 source_bytes/source_sha256 不变。
+- 完整 JSON：483,813 → 483,789 字节；SHA-256：`8adafacd18e2e27630097c5087ac3c4bd63653afc6625ae63b39522e7fadc0f6`。
 - 88 片重组与完整 JSON 深度一致；单片最大 7,467 字节，仍小于 8KB。
 - 148 条 ID 和显示名均无重复；42,980 个顶点及全部非 name 字段与修改前深度一致。
 
@@ -262,4 +262,4 @@
 
 ## v1 — 2026-10-14 · 初始整理
 
-- 从上游 [liang7833/sanguo-map](https://github.com/liang7833/sanguo-map)（commit 121ad89）整理 AI 直读版：紧凑 JSON、区域索引、88 分片、manifest、verification。
+- 整理 AI 直读版：紧凑 JSON、区域索引、88 分片、manifest、verification。
