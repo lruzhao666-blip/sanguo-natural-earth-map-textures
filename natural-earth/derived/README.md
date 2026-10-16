@@ -1,5 +1,9 @@
 # Sanguo Shaded Relief Derivatives
 
+Game clients should load `../../assets/relief.webp` (2000 x 1600, about 237 KB)
+with `../../coordinates.json`. The larger images here are source derivatives
+for expanded views and higher detail; they are not the default runtime assets.
+
 ## Source
 
 Input: `../SR_HR_asia.png`, Natural Earth Shaded Relief Basic, 9900 x 5820,

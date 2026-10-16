@@ -1,0 +1,54 @@
+{
+  "dataset": "Natural Earth Shaded Relief Basic - original global raster",
+  "verified_date": "2026-10-16",
+  "official_page": "https://www.naturalearthdata.com/downloads/10m-raster-data/10m-shaded-relief/",
+  "download_url": "https://naciscdn.org/naturalearth/10m/raster/SR_HR.zip",
+  "archive": {
+    "name": "SR_HR.zip",
+    "bytes": 44367365,
+    "sha256": "b2619fff2fc73c17152983c066adfaa25c4b626916b822bad2fae8bcd9be41a5"
+  },
+  "raster": {
+    "name": "SR_HR.tif",
+    "width": 21600,
+    "height": 10800,
+    "grayscale_bits": 8,
+    "bounds_lonlat": [
+      -180,
+      -90,
+      180,
+      90
+    ],
+    "pixel_size_degrees": [
+      0.016666666666666666,
+      -0.016666666666666666
+    ],
+    "bytes": 233404238,
+    "sha256": "18d7e9171f860abd1108a5ac064946d15ad9b5b68d0644e97194e47ee4e93f5a"
+  },
+  "world_file_parameters": [
+    0.01666666666667,
+    0.0,
+    0.0,
+    -0.01666666666667,
+    -179.99166666666667,
+    89.99166666666667
+  ],
+  "version": {
+    "download_page": "3.2.0",
+    "archive_version_file": "2.0.0",
+    "mismatch_documented": true
+  },
+  "asia_crop": {
+    "file": "natural-earth/SR_HR_asia.png",
+    "global_pixel_edge_box": [
+      11700,
+      480,
+      21600,
+      6300
+    ],
+    "all_decoded_pixels_equal_to_global_source_crop": true,
+    "sha256": "5dfa211290455924209610731eee1896ae92da80f4ce9848c42b174e7e2a4c75"
+  },
+  "note": "The original global ZIP/TIFF are developer source assets, excluded from the lightweight runtime. The existing Asia PNG preserves every source pixel, so the same geographic crop has the same source resolution."
+}

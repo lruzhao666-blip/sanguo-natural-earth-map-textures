@@ -1,5 +1,4 @@
-# Keep the generated AI view and source checksums reproducible across platforms.
+# Keep runtime data and source checksums reproducible across platforms.
 * text eol=lf
 *.png -text
 *.webp -text
-ai/** linguist-generated=true
