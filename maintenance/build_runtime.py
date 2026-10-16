@@ -60,11 +60,15 @@ def build(check=False):
     west, south, east, north = [bounds[k] for k in ('min_x', 'min_y', 'max_x', 'max_y')]
     width, height = [source_map['canvas_size'][k] for k in ('w', 'h')]
     sx, sy = width / (east - west), height / (north - south)
-    background_width = height * 16 / 9
+    vertical_padding = height / 16
+    background_height = height + 2 * vertical_padding
+    background_width = background_height * 16 / 9
     background_pad = (background_width - width) / 2
     background_west = west - background_pad / sx
     background_east = east + background_pad / sx
-    background_bounds = [background_west, south, background_east, north]
+    background_south = south - vertical_padding / sy
+    background_north = north + vertical_padding / sy
+    background_bounds = [background_west, background_south, background_east, background_north]
     relief_size = (2880, 1620)
     assert sha256((ROOT / 'gpkg_all_data.json').read_bytes()).hexdigest() == scenario['map_reference']['sha256']
     provinces = []
@@ -110,7 +114,7 @@ def build(check=False):
     geometry = mapping(geographic)
     def rounded(values):
         if isinstance(values[0], (int, float)):
-            return [min(background_east, max(background_west, round(values[0], 6))), min(north, max(south, round(values[1], 6)))]
+            return [min(background_east, max(background_west, round(values[0], 6))), min(background_north, max(background_south, round(values[1], 6)))]
         return [rounded(value) for value in values]
     geometry['coordinates'] = rounded(geometry['coordinates'])
     final_land = shape(geometry)
@@ -134,8 +138,8 @@ def build(check=False):
     assert d == b == 0 and a > 0 and e < 0
     assert abs(c - a / 2 - extent['west']) < 1e-9
     assert abs(f - e / 2 - extent['north']) < 1e-9
-    crop_box = ((background_west - extent['west']) / a, (north - extent['north']) / e,
-                (background_east - extent['west']) / a, (south - extent['north']) / e)
+    crop_box = ((background_west - extent['west']) / a, (background_north - extent['north']) / e,
+                (background_east - extent['west']) / a, (background_south - extent['north']) / e)
     source_relief = ROOT / 'natural-earth' / relief['file']
     assert fingerprint(source_relief.read_bytes())['sha256'] == metadata['sha256'][relief['file']]
     with Image.open(source_relief) as image:
@@ -157,27 +161,32 @@ def build(check=False):
         'independent_geographic_control_points_verified': False,
         'canvas_size': {'w': width, 'h': height}, 'bounds_lonlat': [west, south, east, north],
         'origin': 'top_left', 'pixel_convention': 'continuous_edges',
-        'viewport': {'reference_css_size': [1920, 1080], 'responsive': True, 'fit': 'height',
+        'viewport': {'reference_css_size': [1920, 1080], 'responsive': True, 'fit': 'height_with_padding',
                      'preserve_aspect_ratio': True, 'camera': 'pan_zoom', 'backing_scale': 'devicePixelRatio',
-                     'initial_scale': 'viewport_height / canvas_height',
+                     'padding_canvas': {'top': vertical_padding, 'bottom': vertical_padding},
+                     'initial_scale': 'viewport_height / (canvas_height + padding_top + padding_bottom)',
                      'initial_offset_x': '(viewport_width - canvas_width * scale) / 2',
-                     'initial_offset_y': 0, 'preserve_full_north_south_extent': True},
+                     'initial_offset_y': 'padding_top * scale', 'preserve_full_north_south_extent': True},
         'canvas_to_lonlat': {'longitude': 'west + x / w * (east - west)', 'latitude': 'north - y / h * (north - south)'},
         'lonlat_to_canvas': {'x': '(longitude - west) / (east - west) * w', 'y': '(north - latitude) / (north - south) * h'},
         'land': {'file': 'assets/land.geojson', 'coordinate_order': '[longitude,latitude]'},
         'relief': {'file': 'assets/relief.webp', 'width': relief_size[0], 'height': relief_size[1],
                    'bounds_lonlat': background_bounds,
-                   'draw_canvas_rect': [-background_pad, 0, background_width, height],
+                   'draw_canvas_rect': [-background_pad, -vertical_padding, background_width, background_height],
                    'lossy': True, 'webp_quality': 30},
     }
     # Both initial wide-screen views retain every original map vertex vertically.
     for vw, vh in ((1920, 1080), (2560, 1440)):
-        scale = vh / height
+        scale = vh / background_height
+        offset_y = vertical_padding * scale
         offset_x = (vw - width * scale) / 2
         for province in provinces:
             for x, y in province['polygon']:
                 assert -1e-9 <= x * scale + offset_x <= vw + 1e-9
-                assert -1e-9 <= y * scale <= vh + 1e-9
+                assert offset_y - 1e-9 <= y * scale + offset_y <= vh - offset_y + 1e-9
+        assert offset_y > 0 and abs(offset_y / vh - 1 / 18) < 1e-9
+        assert abs(-vertical_padding * scale + offset_y) < 1e-9
+        assert abs((-vertical_padding + background_height) * scale + offset_y - vh) < 1e-9
         assert abs(-background_pad * scale + offset_x) < 1e-9
         assert abs((-background_pad + background_width) * scale + offset_x - vw) < 1e-9
     outputs = {'map.json': encode(runtime_map), 'scenario.json': encode(runtime_scenario),
@@ -196,7 +205,9 @@ def build(check=False):
                        'region_boundaries_exactly_preserved': True,
                        'initial_viewports_verified': [[1920, 1080], [2560, 1440]],
                        'all_region_vertices_visible_in_initial_views': True,
-                       'background_north_south_extent_unchanged': True,
+                       'original_map_bounds_unchanged': True,
+                       'initial_vertical_padding_pixels': {'1920x1080': 60, '2560x1440': 80},
+                       'background_includes_vertical_padding': True,
                        'land_max_boundary_error_canvas_px': land_error,
                        'land_crs': 'WGS84 longitude,latitude', 'land_polygons_and_holes_preserved': True,
                        'relief_mean_absolute_luma_error': luma_error, 'relief_source_pixel_crop_box': list(crop_box)},
