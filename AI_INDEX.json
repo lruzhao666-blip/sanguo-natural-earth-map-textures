@@ -1,0 +1,142 @@
+{
+  "format": "sanguo-strategy-map-data-ai-index",
+  "format_version": 1,
+  "dataset": "三国策略地图数据",
+  "status": "ai_readable",
+  "verified_date": "2026-10-16",
+  "read_order": [
+    "AI_INDEX.json",
+    "registration.json",
+    "ai/catalog.json"
+  ],
+  "machine_readable_files": {
+    "map": {
+      "path": "gpkg_all_data.json",
+      "type": "json",
+      "description": "148 个区域及完整 polygon；polygon 坐标是画布坐标。"
+    },
+    "map_parts": {
+      "path_pattern": "ai_parts/part_001.json ... ai_parts/part_088.json",
+      "type": "json_parts",
+      "description": "gpkg_all_data.json 的无损分片；不能与完整文件重复合并。"
+    },
+    "registration": {
+      "path": "registration.json",
+      "type": "json",
+      "description": "画布坐标与 WGS84 经纬度的换算、角点和验证限制。"
+    },
+    "source_manifest": {
+      "path": "manifest.json",
+      "type": "json",
+      "description": "数据摘要、区域与分片统计、坐标范围。"
+    },
+    "verification": {
+      "path": "verification.json",
+      "type": "json",
+      "description": "完整地图、分片和结构校验结果。"
+    },
+    "scenario": {
+      "path": "scenarios/anti-dong-zhuo-alliance/scenario.json",
+      "type": "json",
+      "description": "190 年 1 月反董卓联盟势力、区域归属、颜色和来源引用。"
+    },
+    "natural_earth": {
+      "path": "natural-earth/metadata.json",
+      "type": "json",
+      "description": "Natural Earth 矢量/栅格素材的范围、投影、版本和哈希。"
+    },
+    "derived_relief": {
+      "path": "natural-earth/derived/SR_sanguo.json",
+      "type": "json",
+      "description": "东经 88–135、北纬 10–48 的派生晕渲图及图片哈希。"
+    },
+    "all_repository_content": {
+      "path": "ai/catalog.json",
+      "type": "lossless_utf8_json_parts",
+      "description": "覆盖所有源文件的无损文本分片（每片不超过8192字节），图片保留原件并附元数据入口。"
+    },
+    "natural_earth_land": {
+      "path": "natural-earth/ne_10m_land_asia.geojson",
+      "type": "geojson",
+      "coordinate_order": "[longitude, latitude]",
+      "description": "完整未简化的陆地轮廓；大文件可通过 ai/catalog.json 分片逐段读取。"
+    }
+  },
+  "human_readable_files": [
+    "README.md",
+    "CHANGELOG.md",
+    "province-index.txt",
+    "natural-earth/README.md",
+    "natural-earth/derived/README.md",
+    "scenarios/anti-dong-zhuo-alliance/README.md",
+    "scenarios/anti-dong-zhuo-alliance/史料与取舍.md",
+    "scenarios/anti-dong-zhuo-alliance/势力与城池归属.md",
+    "scenarios/anti-dong-zhuo-alliance/势力色表.md"
+  ],
+  "binary_assets": [
+    {
+      "path": "natural-earth/SR_HR_asia.png",
+      "metadata": "natural-earth/metadata.json",
+      "read_as": "georeferenced_grayscale_raster"
+    },
+    {
+      "path": "natural-earth/derived/SR_sanguo.webp",
+      "metadata": "natural-earth/derived/SR_sanguo.json",
+      "read_as": "lossy_grayscale_relief_background"
+    },
+    {
+      "path": "natural-earth/derived/SR_sanguo_half.webp",
+      "metadata": "natural-earth/derived/SR_sanguo.json",
+      "read_as": "lossy_grayscale_relief_background_half_size"
+    }
+  ],
+  "map_schema": {
+    "top_level": [
+      "bounds_wgs84",
+      "canvas_size",
+      "provinces"
+    ],
+    "province_fields": [
+      "id",
+      "name",
+      "state",
+      "faction",
+      "capital",
+      "center_x",
+      "center_y",
+      "num_vertices",
+      "polygon"
+    ],
+    "polygon_coordinate_order": "[x, y]",
+    "polygon_units": "canvas pixels / continuous canvas coordinates",
+    "polygon_closed": true
+  },
+  "counts": {
+    "provinces": 148,
+    "states": 14,
+    "polygon_vertices": 42980,
+    "map_parts": 88,
+    "scenario_factions": 40
+  },
+  "rules": [
+    "Use gpkg_all_data.json for complete data; use ai_parts only when a size limit prevents reading the complete file.",
+    "Do not interpret polygon values as longitude/latitude; use registration.json for conversion.",
+    "center_x and center_y are label reference points, not guaranteed historical capital coordinates.",
+    "The scenario faction ownership is a scenario projection and does not rewrite the base map faction field.",
+    "Natural Earth is a visual backdrop and does not prove historical province boundaries.",
+    "Read every part for a catalog entry; concatenate its text exactly before parsing original JSON or scripts.",
+    "Use the original PNG/WebP for visual inspection. Metadata-only text does not encode the image pixels."
+  ],
+  "validation_commands": [
+    "python build_ai.py --check",
+    "node verify_registration.cjs",
+    "node scenarios/anti-dong-zhuo-alliance/verify.cjs",
+    "python natural-earth/verify.py",
+    "python natural-earth/derived/make_derived.py"
+  ],
+  "reading_strategy": {
+    "text_only": "Choose a source in the catalog pages, read all of its text parts, and concatenate before parsing.",
+    "programmatic": "Read the original JSON/GeoJSON directly when tools permit large-file parsing.",
+    "images": "Read the asset metadata and load the original image when visual content is needed."
+  }
+}

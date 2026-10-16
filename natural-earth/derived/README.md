@@ -62,11 +62,13 @@ image. It prints pixel results and all three output sizes/checksums. Repeated
 runs are byte-identical with the same Pillow/libwebp versions; encoder upgrades
 can change compressed bytes and the generated hashes.
 
-On source snapshot `f7164a6`, the original `../verify.py` stops at a pre-existing
-`README.md` checksum mismatch in `../metadata.json` (3491 actual bytes versus
-3497 recorded). The PNG checksum passes. Original files are left untouched;
-the derived build does not depend on that stale README checksum.
+The source snapshot had a stale README checksum. The metadata checksum was
+updated with the coordinate documentation; `../verify.py` now passes.
+The source raster and vector asset checksums remain unchanged.
 
-This is a visual backdrop, not historical geography. Registration to the
-existing strategy-map canvas has not been established. No original Natural
-Earth assets or Sanguo regional data are modified.
+This is a visual backdrop, not historical geography. The root-level
+`registration.json` records and verifies the affine conversion between the
+existing 2000 x 1600 strategy-map canvas and WGS84 bounds. That is a
+mathematical coordinate registration, not an independent historical
+coastline/control-point survey. No original Natural Earth assets or Sanguo
+regional data are modified.

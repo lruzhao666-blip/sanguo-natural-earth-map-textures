@@ -4,9 +4,21 @@
 
 ## 给 AI 的入口
 
-1. 先读本 README 和 [区域索引](province-index.txt)（约 6.5KB）。
-2. 使用 [完整地图 JSON](gpkg_all_data.json)（483,426 字节，148 条区域，全部顶点）。优先下载并用程序解析，不要只读网页预览。
-3. 仅当单次抓取受 10KB 限制时，按顺序读取 [ai_parts](ai_parts/) 下 part_001.json 至 part_088.json。每份都是合法 JSON，实测最大 7,467 字节。
+1. 先读 [AI_INDEX.json](AI_INDEX.json)，按其中的 `read_order` 和 `rules` 读取。
+2. 全仓库文本阅读版见 [ai/README.md](ai/README.md)：目录和内容均提供每片不超过 8192 字节的合法 JSON，保留原文，可按 SHA-256 无损重组；图片附结构化资产说明并保留原件。
+3. 使用 [完整地图 JSON](gpkg_all_data.json)（148 条区域，全部顶点）。优先下载并用程序解析，不要只读网页预览。
+4. 仅当单次抓取受大小限制时，按顺序读取 [ai_parts](ai_parts/) 下 `part_001.json` 至 `part_088.json`。每份都是合法 JSON，不能与完整文件重复合并。
+
+## 坐标配准状态
+
+**已配准（数学仿射换算已验证）**。具体公式、四角坐标、验证数量和限制见 [registration.json](registration.json)。画布原点在左上角，x 向东、y 向南：
+
+```text
+longitude = west + x / width * (east - west)
+latitude  = north - y / height * (north - south)
+```
+
+本标记验证的是现有 `bounds_wgs84` 与 `canvas_size` 的换算闭环，不等于历史政区边界已与现代海岸线或实测历史坐标完全吻合。
 
 ## 完整数据说明
 
@@ -30,10 +42,13 @@
 
 - gpkg_all_data.json：完整紧凑数据。
 - province-index.txt：148条区域索引，无 polygon。
-- [natural-earth/](natural-earth/README.md)：独立的亚洲陆地轮廓与灰度晕渲素材（15°E—180°E、15°S—82°N），含来源、地理配准信息和自检脚本；尚未与三国画布配准。
+- [natural-earth/](natural-earth/README.md)：独立的亚洲陆地轮廓与灰度晕渲素材（15°E—180°E、15°S—82°N），含来源、地理配准信息和自检脚本；与三国画布的数学换算见 `registration.json`。
 - ai_parts/：88份不超过8KB的无损分片。
 - [scenarios/anti-dong-zhuo-alliance/](scenarios/anti-dong-zhuo-alliance/README.md)：反董卓联盟剧本归属、势力色与校验脚本。
 - manifest.json：数据摘要、区域与分片统计、坐标范围。
+- AI_INDEX.json：全仓库 AI 读取顺序、文件角色、字段规则和校验命令。
+- registration.json：画布坐标与 WGS84 经纬度的换算及验证状态。
+- verify_registration.cjs：验证画布范围、经纬度范围和全部顶点往返误差。
 - verification.json：全量数据和分片核验结果。
 - CHANGELOG.md：地图数据、素材与剧本修订记录（2026-10-14 至 2026-10-15）。
 
