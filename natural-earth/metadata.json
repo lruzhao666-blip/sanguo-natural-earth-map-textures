@@ -1,10 +1,10 @@
 {
   "dataset": "Natural Earth 10m land + 10m shaded relief basic",
   "extent_wgs84": {
-    "west": 15.0,
-    "south": -15.0,
-    "east": 180.0,
-    "north": 82.0
+    "west": 15,
+    "south": -15,
+    "east": 180,
+    "north": 82
   },
   "crs": "WGS 84 geographic longitude/latitude (EPSG:4326 / CRS84)",
   "land": {
@@ -57,7 +57,7 @@
     "The PNG is georeferenced by the accompanying world file; the GeoJSON uses WGS84 longitude/latitude.",
     "Bounding rectangle includes adjacent non-Asian land; it is not an Asia continent boundary.",
     "Extent does not cross the antimeridian; land on the opposite side of 180 degrees is excluded.",
-    "No registration to the existing 2000 x 1600 strategy-map canvas has been verified.",
+    "The declared affine canvas/WGS84 mapping is numerically verified in ../registration.json; independent geographic control points are not verified.",
     "Natural Earth 10m means 1:10,000,000 scale, not 10-meter resolution."
   ],
   "sha256": {
@@ -65,7 +65,7 @@
     "SR_HR_asia.png": "5dfa211290455924209610731eee1896ae92da80f4ce9848c42b174e7e2a4c75",
     "SR_HR_asia.pgw": "422476ac65b62f361bd51ad77a3f7e2af46fc2250286963db7697a9c0b084a0d",
     "SR_HR_asia.prj": "3259f0e55290a82b1350646f604e8a7ee1e2136c0320a40fad838ab40819fff8",
-    "README.md": "a24f954768ed23f65dd876e51121c3593977815dd83cec73a43f42f68d6363bf",
+    "README.md": "99f132a11e02582530e8f9520bcf4e50daf535b44ad7e9adadfba05af60f011e",
     "verify.py": "135fc008b00a35a75600bbb0ec7529b33ce841c3b2eeea4cbb0bb35d53ef5a9e",
     ".gitattributes": "2e18d1d732a8e5a3efa54346e9e6a9653cc575c6ca70738539a068211254d076"
   },
@@ -74,7 +74,7 @@
     "SR_HR_asia.png": 17155309,
     "SR_HR_asia.pgw": 105,
     "SR_HR_asia.prj": 147,
-    "README.md": 3497,
+    "README.md": 3581,
     "verify.py": 3123,
     ".gitattributes": 90
   },
