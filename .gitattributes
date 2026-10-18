@@ -1,4 +1,0 @@
-# Keep runtime data and source checksums reproducible across platforms.
-* text eol=lf
-*.png -text
-*.webp -text
